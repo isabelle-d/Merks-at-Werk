@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://w1soc5n7vwdm"]
 
 [ext_resource type="Script" uid="uid://gxuop1xb6hk7" path="res://Levels/base_field.gd" id="1_5ka6s"]
+[ext_resource type="PackedScene" uid="uid://cuetmviqorir" path="res://Enemy/missile_enemy.tscn" id="2_57y80"]
 
-[node name="BaseField" type="Node2D" unique_id=1508715508]
+[node name="BaseField" type="Node2D" unique_id=1508715508 node_paths=PackedStringArray("field_timer", "level_timer")]
 script = ExtResource("1_5ka6s")
+timer_enabled = true
+field_timer = NodePath("FieldTimer")
+level_timer = NodePath("SpawnTimer")
+missile_scene = ExtResource("2_57y80")
 
-[node name="BadTimer" type="Timer" parent="." unique_id=1347941109]
+[node name="FieldTimer" type="Timer" parent="." unique_id=1347941109]
 wait_time = 60.0
 
-[connection signal="timeout" from="BadTimer" to="." method="_on_bad_timer_timeout"]
+[node name="SpawnTimer" type="Timer" parent="." unique_id=2011516071]
+wait_time = 300.0
+
+[connection signal="timeout" from="FieldTimer" to="." method="_on_bad_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
