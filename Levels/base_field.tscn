@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://w1soc5n7vwdm"]
 
-[ext_resource type="Script" uid="uid://eaivqroghwin" path="res://Levels/field_template.gd" id="1_o5q5k"]
+[ext_resource type="Script" uid="uid://gxuop1xb6hk7" path="res://Levels/base_field.gd" id="1_5ka6s"]
 
 [node name="BaseField" type="Node2D" unique_id=1508715508]
-script = ExtResource("1_o5q5k")
+script = ExtResource("1_5ka6s")
 
 [node name="BadTimer" type="Timer" parent="." unique_id=1347941109]
+wait_time = 60.0
+
+[connection signal="timeout" from="BadTimer" to="." method="_on_bad_timer_timeout"]
